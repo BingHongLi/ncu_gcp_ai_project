@@ -3,17 +3,17 @@
 
 # 環境準備
 
+建置 Project
+
 建置 cloud storage
 
 建置 firestore
 
 # 程式碼準備與部署
 
-開啟cloudshell editor，並下載程式碼
+複製下列網址，並開啟。
 
-```
-git clone https://github.com/BingHongLi/ncu_gcp_ai_project
-```
+https://ssh.cloud.google.com/cloudshell/editor?cloudshell_git_repo=https%3A%2F%2Fgithub.com%2FBingHongLi%2Fncu_gcp_ai_project&cloudshell_open_in_editor=README.md&cloudshell_workspace=.
 
 # 指定教材資料夾為工作目錄
 

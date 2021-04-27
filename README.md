@@ -17,6 +17,11 @@ https://ssh.cloud.google.com/cloudshell/editor?cloudshell_git_repo=https%3A%2F%2
 
 # 指定教材資料夾為工作目錄
 
+# 將訓練好的模型放入 converted_savedmodel資料夾
+
+
+# 將要回應的json放入line_message_json資料夾
+
 
 # 構建程式碼
 

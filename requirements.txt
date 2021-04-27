@@ -9,3 +9,5 @@ google-cloud-storage
 pandas
 gunicorn
 google-cloud-logging
+tensorflow-cpu == 2.4.1
+Pillow

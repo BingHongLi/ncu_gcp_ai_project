@@ -1,0 +1,45 @@
+services:
+  pgadmin4:
+    container_name: pgadmin4
+    image: dpage/pgadmin4
+    restart: always
+    environment:
+      PGADMIN_DEFAULT_EMAIL: "ncu@ncu.edu.tw"
+      PGADMIN_DEFAULT_PASSWORD: "ncu+123"
+    ports:
+      - "5050:80"
+    depends_on:
+      - ncu-postgre
+
+
+  postgrest:
+    image: postgrest/postgrest
+    ports:
+      - "3000:3000"
+    environment:
+      PGRST_DB_URI: postgres://ncucc:ncuccpw@ncu-postgre:5432/ncu
+      PGRST_OPENAPI_SERVER_PROXY_URI: http://127.0.0.1:3000
+      PGRST_DB_ANON_ROLE: web_anon
+      PGRST_DB_SCHEMA: public
+    depends_on:
+      - ncu-postgre
+
+
+  ncu-postgre:
+    image: pgvector/pgvector:0.7.4-pg17
+    #image: postgis/postgis:13-master
+    # Required when running on platform other than amd64, like Apple M1/M2:
+    # platform: linux/amd64
+    volumes:
+      - ./data/ncu-database:/var/lib/postgresql/data
+    environment:
+      POSTGRES_USER: "ncucc"
+      POSTGRES_PASSWORD: "ncuccpw"
+      POSTGRES_DB: "ncu"
+    healthcheck:
+      test: ["CMD", "pg_isready", "--host=localhost", "--username=ncucc"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_interval: 5s
+      start_period: 30s
